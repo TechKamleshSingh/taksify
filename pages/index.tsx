@@ -1,46 +1,35 @@
 import React, { useState } from "react";
-import FormInput from "./component/FormInput";
+import FormInput from "../component/FormInput";
 import MainLayout from "./layout/MainLayout";
-import { Todo } from "./model";
-import TodoList from "./component/TodoList";
+import TodoList from "../component/TodoList";
+import { Todo } from "@/lib/types";
 
 
 const Home: React.FC = () => {
 
   const [todo, setTodo] = useState<string>("")
-  const [todos, setTodos] = useState<Todo[]>([])
+  const [todos, setTodos] = useState<Todo[]>([{
+    id:  Date.now(),
+    isDone: false,
+    todo: "Test"
+  }])
 
-  // setTodos([...todos, {
-  //   id: 1681969150947,
-  //   isDone: false,
-  //   todo: "Buy a book"
-  // }])
 
   const handelAdd = (e: React.FormEvent) => {
     e.preventDefault()
     if (todo) {
-      setTodos([...todos, { id: Date.now(), todo: todo, isDone: false }])
+      setTodos([{ id: Date.now(), todo: todo, isDone: false }, ...todos,])
       setTodo("")
     }
   }
-
-  console.log(todos)
-
 
   return (
 
     <div className="p-4 bg-slate-200 h-screen">
       <MainLayout>
         <FormInput todo={todo} setTodo={setTodo} handelAdd={handelAdd} />
-        <TodoList todos={todos} setTodos={setTodos} />
-
-        {/* {
-          todos.map((data) => (
-            <li key={data.id}>{data.todo}</li>
-          ))
-        } */}
-
-
+        <TodoList todos={todos.filter((todo) => todo.isDone !== true )} setTodos={setTodos} />
+        <TodoList todos={todos.filter((todo) => todo.isDone !== false )} setTodos={setTodos} />
       </MainLayout>
     </div>
   )

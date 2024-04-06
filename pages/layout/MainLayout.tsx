@@ -7,11 +7,11 @@ interface ContainerProps {
 const MainLayout: FC<ContainerProps> = ({ children }) => {
     return (
         <>
-            <main className="flex flex-col items-center justify-between pb-5">
+            <main className="flex flex-col items-center justify-center pb-5 w-full">
                 <h1 className='font-bold text-6xl font-Lobster underline decoration-sky-500 text-red-500 decoration-dotted'>Taskify</h1>
             </main>
             {children}
-        </>    
+        </>
     )
 }
 
