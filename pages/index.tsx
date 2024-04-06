@@ -8,11 +8,7 @@ import { Todo } from "@/lib/types";
 const Home: React.FC = () => {
 
   const [todo, setTodo] = useState<string>("")
-  const [todos, setTodos] = useState<Todo[]>([{
-    id:  Date.now(),
-    isDone: false,
-    todo: "Test"
-  }])
+  const [todos, setTodos] = useState<Todo[]>([])
 
 
   const handelAdd = (e: React.FormEvent) => {

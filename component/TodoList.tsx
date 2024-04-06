@@ -11,7 +11,7 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
     return (
         <div className="flex flex-wrap justify-center w-[100%] ">
             {
-                todos && todos.map((data) => (
+                todos.map((data) => (
                     <SingleTodo key={data.id} data={data} todos={todos} setTodos={setTodos} />
                 ))
             }
